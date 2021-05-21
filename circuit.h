@@ -18,8 +18,8 @@ public:
 };
 
 class circuit{
-    pixel* tunnel;
-    int width, heigth,depth;
+    bool* tunnel;
+    int width, heigth, depth;
 public:
     circuit(int w, int h, int d);
 };

@@ -40,7 +40,7 @@ int pixel::indice(int W,int H){
 }
 
 circuit::circuit(int w, int h, int d){
-    tunnel = new pixel[w*h*d];
+    tunnel = new bool[w*h*d];
     width = w;
     heigth = h;
     depth = d;
