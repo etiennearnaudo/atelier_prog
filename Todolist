@@ -1,0 +1,19 @@
+Classe vaisseau :
+    taille du vaisseau
+    fonction qui permet de bouger
+    position du faisseau
+    vitesse du vaisseau
+
+Classe obstacle :
+    forme
+    position
+
+Classe jeu
+    Gagne/perd
+    Fait avancer
+    création d'obstacle aléatoire
+
+Affichage
+    perspective ?
+    dessiner les images
+    animation
