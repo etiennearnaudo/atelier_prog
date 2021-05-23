@@ -10,4 +10,15 @@ using namespace std;
 
 typedef Image<byte> Img;
 
+
+const int taille_case = 10 ;
+const int largeur = 32 ;
+const int hauteur = 32 ;
+const int profondeur = 25 ;
+
+
+void InitRandom();
+
+int Random(int a, int b);
+
 #endif // OUTILS_H

@@ -18,10 +18,24 @@ public:
 };
 
 class circuit{
-    bool* tunnel;
+    int* tunnel;
     int width, heigth, depth;
 public:
     circuit(int w, int h, int d);
+    void setPixel(pixel p,int value);
+    void affiche(int z,int size,int dec_vert,int dec_hor);
+    void affiche(int z);
+    int getTunnel(pixel p);
+};
+
+class obstacle{
+    pixel* ob;
+    pixel principal;
+    int taille;
+public:
+    obstacle(int w,int h,int z);
+    void insert(circuit c);
+    int gettaille();
 };
 
 

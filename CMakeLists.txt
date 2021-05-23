@@ -6,7 +6,7 @@ find_package(Imagine REQUIRED)
 
 project(mario)
 add_executable(mario mario.cpp
-		outils.h
+		outils.h outils.cpp
 		kart.h kart.cpp
 		circuit.h circuit.cpp)
 ImagineUseModules(mario Graphics)
