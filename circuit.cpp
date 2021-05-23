@@ -12,6 +12,8 @@ pixel::pixel(int x0, int y0,int z0){
     z=z0;
 }
 
+pixel::~pixel(){}
+
 int pixel::getx(){
     return x;
 }
@@ -74,9 +76,11 @@ circuit::circuit(int w, int h, int d){
     openWindow(width*taille_case,heigth*taille_case);
 }
 
+circuit::~circuit(){
+    delete[] tunnel;
+}
+
 void circuit::setPixel(pixel p,int value){
-    //cout << "z = " << p.getz() << endl;
-    //cout << p.getx() << "    " << p.gety()<< endl;
     tunnel[p.indice(width,heigth)] = value;
 }
 
@@ -94,14 +98,14 @@ void circuit::affiche(int z,int size,int dec_x,int dec_y){
 void circuit::affiche(int z){
     fillRect(0,0,width*taille_case,heigth*taille_case,WHITE);
     affiche(z,taille_case,0,0);
-    affiche(z+1,taille_case-1,width/2,heigth/2);
-    affiche(z+2,taille_case-2,width,heigth);
-    affiche(z+3,taille_case-3,3*(width/2),3*(heigth/2));
-    affiche(z+4,taille_case-4,4*(width/2),4*(heigth/2));
-    affiche(z+5,taille_case-5,5*(width/2),5*(heigth/2));
+    affiche(z+1,taille_case-1,1*(width/2),1*((heigth/2)-3));
+    affiche(z+2,taille_case-2,2*(width/2),2*((heigth/2)-3));
+    affiche(z+3,taille_case-3,3*(width/2),3*((heigth/2)-3));
+    affiche(z+4,taille_case-4,4*(width/2),4*((heigth/2)-3));
+    affiche(z+5,taille_case-5,5*(width/2),5*((heigth/2)-3));
 }
 
-int circuit::getTunnel(pixel p){
+int circuit::getPixel(pixel p){
     return tunnel[p.indice(width,heigth)];
 }
 
@@ -127,6 +131,10 @@ obstacle::obstacle(int w,int h,int z){
        }
     }
     principal = pixel(0,0,0);
+}
+
+obstacle::~obstacle(){
+    delete[] ob;
 }
 
 

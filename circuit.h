@@ -7,6 +7,7 @@ class pixel{
     int x,y,z;
 public:
     pixel();
+    ~pixel();
     pixel(int x0,int y0,int z0);
     int getx();
     int gety();
@@ -22,10 +23,11 @@ class circuit{
     int width, heigth, depth;
 public:
     circuit(int w, int h, int d);
+    ~circuit();
     void setPixel(pixel p,int value);
-    void affiche(int z,int size,int dec_vert,int dec_hor);
+    void affiche(int z,int size,int dec_x,int dec_y);
     void affiche(int z);
-    int getTunnel(pixel p);
+    int getPixel(pixel p);
 };
 
 class obstacle{
@@ -34,6 +36,7 @@ class obstacle{
     int taille;
 public:
     obstacle(int w,int h,int z);
+    ~obstacle();
     void insert(circuit c);
     int gettaille();
 };

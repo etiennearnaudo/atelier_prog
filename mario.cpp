@@ -11,6 +11,7 @@ int main()
 
     circuit circ(largeur,hauteur,profondeur);
     circ.affiche(0);
+    click();
 
     obstacle ob1(largeur,hauteur,0);
     obstacle ob2(largeur,hauteur,4);
