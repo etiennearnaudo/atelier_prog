@@ -12,11 +12,15 @@ int main()
     circuit circ(largeur,hauteur,profondeur);
     circ.affiche(0);
     click();
-
+    cout << 1 << endl;
     obstacle ob1(largeur,hauteur,0);
+    cout << 2 << endl;
     obstacle ob2(largeur,hauteur,4);
+    cout << 3 << endl;
     ob1.insert(circ);
+    cout << 4 << endl;
     ob2.insert(circ);
+    cout << 5 << endl;
     circ.affiche(0);
     click();
     circ.affiche(1);
