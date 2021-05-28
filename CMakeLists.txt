@@ -6,6 +6,7 @@ find_package(Imagine REQUIRED)
 
 project(mario)
 add_executable(mario mario.cpp
+                affichage.h affichage.cpp
 		outils.h outils.cpp
 		kart.h kart.cpp
 		circuit.h circuit.cpp)
