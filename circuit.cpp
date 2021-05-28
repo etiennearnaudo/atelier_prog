@@ -43,7 +43,6 @@ int pixel::indice(int W,int H){
 }
 
 circuit::circuit(int w, int h, int d){
-    tunnel = new int[w*h*d];
     width = w;
     heigth = h;
     depth = d;
@@ -76,9 +75,7 @@ circuit::circuit(int w, int h, int d){
     openWindow(width*taille_case,heigth*taille_case);
 }
 
-circuit::~circuit(){
-    delete[] tunnel;
-}
+circuit::~circuit(){}
 
 void circuit::setPixel(pixel p,int value){
     cout <<"taille_circuit = "<<width*heigth*depth<<endl;
@@ -89,17 +86,21 @@ void circuit::setPixel(pixel p,int value){
     cout << m << endl;
     cout << tunnel[p.indice(width,heigth)] << endl;
     tunnel[p.indice(width,heigth)] = value;
+    cout << "fait    " << tunnel[p.indice(width,heigth)] <<endl;
 }
 
 void circuit::affiche(int z,int size,int dec_x,int dec_y){
     pixel p;
     p.setz(z);
-     for (int i=0;i<width;i++) for (int j=0;j<heigth;j++) {
-         p.setx(i);
-         p.sety(j);
-         if(tunnel[p.indice(width,heigth)]==1) fillRect(p.getx()*size+dec_x,p.gety()*size+dec_y,size,size,BLACK);
-         else if(tunnel[p.indice(width,heigth)]==2) fillRect(p.getx()*size+dec_x,p.gety()*size+dec_y,size,size,BLUE);
-     }
+    int compteur=0;
+    for (int i=0;i<width;i++) for (int j=0;j<heigth;j++) {
+        p.setx(i);
+        p.sety(j);
+        if(tunnel[p.indice(width,heigth)]==2) compteur+=1;
+        if(tunnel[p.indice(width,heigth)]==1) fillRect(p.getx()*size+dec_x,p.gety()*size+dec_y,size,size,BLACK);
+        else if(tunnel[p.indice(width,heigth)]==2) fillRect(p.getx()*size+dec_x,p.gety()*size+dec_y,size,size,BLUE);
+    }
+    cout <<"compteur = "<< compteur<< endl;
 }
 
 void circuit::affiche(int z){
@@ -120,21 +121,21 @@ obstacle::obstacle(int w,int h,int z){
     int n=Random(2,2);
     pixel pix(0,0,z);
     if (n==0){
-        taille = (w/2)+(w/2)*(h-2);
+        taille = ((w/2)-1)*(h-2);
         ob = new pixel[taille];
         for (int i=1;i<w/2;i++) for (int j=1;j<h-1;j++) {
             pix.setx(i);
             pix.sety(j);
-            ob[i+(w/2)*j]=pix;
+            ob[i+((w/2)-1)*j]=pix;
         }
     }
     if (n==1){
-        taille = (w-1)+w*(h/2-1);
+        taille = (w-2)*((h/2)-1);
         ob = new pixel[taille];
         for (int i=1;i<w-1;i++) for (int j=1;j<h/2;j++) {
             pix.setx(i);
             pix.sety(j);
-            ob[i+w*j]=pix;
+            ob[i+(w-2)*j]=pix;
        }
     }
     if(n==2){
@@ -155,7 +156,7 @@ obstacle::~obstacle(){
 }
 
 
-void obstacle::insert(circuit c){
+void obstacle::insert(circuit &c){
     cout << taille <<endl;
     pixel pix;
     for (int i=0;i<taille;i++) {

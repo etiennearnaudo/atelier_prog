@@ -22,6 +22,11 @@ int main()
     ob2.insert(circ);
     cout << 5 << endl;
     circ.affiche(0);
+    pixel pix;
+    pix.setx(15);
+    pix.sety(18);
+    pix.setz(0);
+    cout <<"pix = "<<circ.getPixel(pix) << endl;
     click();
     circ.affiche(1);
     click();
