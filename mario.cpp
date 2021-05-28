@@ -5,6 +5,13 @@
 
 #include "circuit.h"
 
+
+
+
+
+
+
+
 int main()
 {
     InitRandom();
@@ -12,28 +19,18 @@ int main()
     circuit circ(largeur,hauteur,profondeur);
     circ.affiche(0);
     click();
-    cout << 1 << endl;
     obstacle ob1(largeur,hauteur,0);
-    cout << 2 << endl;
     obstacle ob2(largeur,hauteur,4);
-    cout << 3 << endl;
     ob1.insert(circ);
-    cout << 4 << endl;
     ob2.insert(circ);
-    cout << 5 << endl;
     circ.affiche(0);
-    pixel pix;
-    pix.setx(15);
-    pix.sety(18);
-    pix.setz(0);
-    cout <<"pix = "<<circ.getPixel(pix) << endl;
-    click();
+    milliSleep(200);
     circ.affiche(1);
-    click();
+    milliSleep(200);
     circ.affiche(2);
-    click();
+    milliSleep(200);
     circ.affiche(3);
-    click();
+    milliSleep(200);
     circ.affiche(4);
 
     endGraphics();
