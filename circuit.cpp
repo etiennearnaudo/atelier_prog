@@ -91,15 +91,6 @@ void circuit::setPixel(pixel p,int value){
 void circuit::affiche(int z,int size,int dec_x,int dec_y){
     pixel p;
     p.setz(z);
-<<<<<<< HEAD
-     for (int i=0;i<width;i++) for (int j=0;j<heigth;j++) {
-         p.setx(i);
-         p.sety(j);
-         if(tunnel[p.indice(width,heigth)]==1) fillRect(p.getx()*size+dec_x,p.gety()*size+dec_y,size,size,BLACK);
-         if(tunnel[p.indice(width,heigth)]==2) fillRect(p.getx()*size+dec_x,p.gety()*size+dec_y,size,size,BLUE);
-         if(tunnel[p.indice(width,heigth)]==3) fillRect(p.getx()*size+dec_x,p.gety()*size+dec_y,size,size,PURPLE);
-     }
-=======
     int compteur=0;
     for (int i=0;i<width;i++) for (int j=0;j<heigth;j++) {
         p.setx(i);
@@ -109,7 +100,6 @@ void circuit::affiche(int z,int size,int dec_x,int dec_y){
         else if(tunnel[p.indice(width,heigth)]==2) fillRect(p.getx()*size+dec_x,p.gety()*size+dec_y,size,size,BLUE);
     }
     cout <<"compteur = "<< compteur<< endl;
->>>>>>> refs/heads/etienne2
 }
 
 void circuit::affiche(int z){
