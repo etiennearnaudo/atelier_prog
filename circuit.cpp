@@ -38,11 +38,10 @@ void pixel::setz(int z0){
 }
 
 int pixel::indice(int W,int H){
-    return(y*W+x+W*H*z);
+    return(x+y*W+W*H*z);
 }
 
 circuit::circuit(int w, int h, int d){
-    tunnel = new int[w*h*d];
     width = w;
     heigth = h;
     depth = d;
@@ -75,17 +74,24 @@ circuit::circuit(int w, int h, int d){
     openWindow(width*taille_case,heigth*taille_case);
 }
 
-circuit::~circuit(){
-    delete[] tunnel;
-}
+circuit::~circuit(){}
 
 void circuit::setPixel(pixel p,int value){
+    cout <<"taille_circuit = "<<width*heigth*depth<<endl;
+    cout << p.indice(width,heigth) << endl;
+    int m=0;
+    cout <<"m = "<< m << endl;
+    m=tunnel[p.indice(width,heigth)];
+    cout << m << endl;
+    cout << tunnel[p.indice(width,heigth)] << endl;
     tunnel[p.indice(width,heigth)] = value;
+    cout << "fait    " << tunnel[p.indice(width,heigth)] <<endl;
 }
 
 void circuit::affiche(int z,int size,int dec_x,int dec_y){
     pixel p;
     p.setz(z);
+<<<<<<< HEAD
      for (int i=0;i<width;i++) for (int j=0;j<heigth;j++) {
          p.setx(i);
          p.sety(j);
@@ -93,6 +99,17 @@ void circuit::affiche(int z,int size,int dec_x,int dec_y){
          if(tunnel[p.indice(width,heigth)]==2) fillRect(p.getx()*size+dec_x,p.gety()*size+dec_y,size,size,BLUE);
          if(tunnel[p.indice(width,heigth)]==3) fillRect(p.getx()*size+dec_x,p.gety()*size+dec_y,size,size,PURPLE);
      }
+=======
+    int compteur=0;
+    for (int i=0;i<width;i++) for (int j=0;j<heigth;j++) {
+        p.setx(i);
+        p.sety(j);
+        if(tunnel[p.indice(width,heigth)]==2) compteur+=1;
+        if(tunnel[p.indice(width,heigth)]==1) fillRect(p.getx()*size+dec_x,p.gety()*size+dec_y,size,size,BLACK);
+        else if(tunnel[p.indice(width,heigth)]==2) fillRect(p.getx()*size+dec_x,p.gety()*size+dec_y,size,size,BLUE);
+    }
+    cout <<"compteur = "<< compteur<< endl;
+>>>>>>> refs/heads/etienne2
 }
 
 void circuit::affiche(int z){
@@ -110,26 +127,36 @@ int circuit::getPixel(pixel p){
 }
 
 obstacle::obstacle(int w,int h,int z){
-    int n=Random(0,1);
+    int n=Random(2,2);
     pixel pix(0,0,z);
     if (n==0){
-        taille = (w/2)+(w/2)*(h-2);
+        taille = ((w/2)-1)*(h-2);
         ob = new pixel[taille];
         for (int i=1;i<w/2;i++) for (int j=1;j<h-1;j++) {
             pix.setx(i);
             pix.sety(j);
-            ob[i+(w/2)*j]=pix;
+            ob[i+((w/2)-1)*j]=pix;
         }
     }
     if (n==1){
-        taille = (w-1)+w*(h/2-1);
+        taille = (w-2)*((h/2)-1);
         ob = new pixel[taille];
         for (int i=1;i<w-1;i++) for (int j=1;j<h/2;j++) {
             pix.setx(i);
             pix.sety(j);
-            ob[i+w*j]=pix;
+            ob[i+(w-2)*j]=pix;
        }
     }
+    if(n==2){
+        taille = 3*(w-2);
+        ob = new pixel[taille];
+        for (int i=0;i<w-2;i++) for (int j=0;j<3;j++){
+            pix.setx(i+1);
+            pix.sety((h/2)+j);
+            ob[i+(w-2)*j]=pix;
+        }
+    }
+    cout <<"obstacle = "<< n << endl;
     principal = pixel(0,0,0);
 }
 
@@ -138,8 +165,17 @@ obstacle::~obstacle(){
 }
 
 
-void obstacle::insert(circuit c){
-    for (int i=0;i<taille;i++) c.setPixel(ob[i],2);
+void obstacle::insert(circuit &c){
+    cout << taille <<endl;
+    pixel pix;
+    for (int i=0;i<taille;i++) {
+        pix=ob[i];
+        cout << 12 << endl;
+        cout << pix.indice(largeur,hauteur) << endl;
+        cout << largeur*hauteur*profondeur << endl;
+        c.setPixel(pix,2);
+        cout << pix.getx() <<"   "<<pix.gety()<<"   "<<pix.getz()<< endl;
+   }
 }
 
 int obstacle::gettaille(){

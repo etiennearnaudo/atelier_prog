@@ -19,7 +19,7 @@ public:
 };
 
 class circuit{
-    int* tunnel;
+    int tunnel[largeur*hauteur*profondeur];
     int width, heigth, depth;
 public:
     circuit(int w, int h, int d);
@@ -37,7 +37,7 @@ class obstacle{
 public:
     obstacle(int w,int h,int z);
     ~obstacle();
-    void insert(circuit c);
+    void insert(circuit &c);
     int gettaille();
 };
 
