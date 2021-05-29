@@ -87,18 +87,20 @@ void circuit::affiche(int z,int size,int dec_x,int dec_y){
         p.setx(i);
         p.sety(j);
         if(tunnel[p.indice(width,heigth)]==1) fillRect(p.getx()*size+dec_x,p.gety()*size+dec_y,size,size,BLACK);
-        else if(tunnel[p.indice(width,heigth)]==2) fillRect(p.getx()*size+dec_x,p.gety()*size+dec_y,size,size,BLUE);
+        if(tunnel[p.indice(width,heigth)]==2) fillRect(p.getx()*size+dec_x,p.gety()*size+dec_y,size,size,BLUE);
+//        if(tunnel[p.indice(width,heigth)]==3) fillRect(p.getx()*size+dec_x,p.gety()*size+dec_y,size,size,PURPLE);
     }
 }
 
 void circuit::affiche(int z){
     fillRect(0,0,width*taille_case,heigth*taille_case,WHITE);
-    affiche(z,taille_case,0,0);
-    affiche(z+1,taille_case-1,1*(width/2),1*((heigth/2)-3));
-    affiche(z+2,taille_case-2,2*(width/2),2*((heigth/2)-3));
-    affiche(z+3,taille_case-3,3*(width/2),3*((heigth/2)-3));
-    affiche(z+4,taille_case-4,4*(width/2),4*((heigth/2)-3));
     affiche(z+5,taille_case-5,5*(width/2),5*((heigth/2)-3));
+    affiche(z+4,taille_case-4,4*(width/2),4*((heigth/2)-3));
+    affiche(z+3,taille_case-3,3*(width/2),3*((heigth/2)-3));
+    affiche(z+2,taille_case-2,2*(width/2),2*((heigth/2)-3));
+    affiche(z+2,taille_case-2,2*(width/2),2*((heigth/2)-3));
+    affiche(z+1,taille_case-1,1*(width/2),1*((heigth/2)-3));
+    affiche(z,taille_case,0,0);
 }
 
 int circuit::getPixel(pixel p){

@@ -4,13 +4,13 @@
 #include "circuit.h"
 
 class vaisseau{
-    Vect pos,vit;
+    Vect2 pos,vit;
 
 public:
     vaisseau();
-    Vect getP();
-    Vect getV();
-    void insert(circuit c, int valeur);
+    Vect2 getP();
+    Vect2 getV();
+    void affiche(Color c);
     void bouge(circuit c);
 
 };

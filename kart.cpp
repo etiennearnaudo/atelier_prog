@@ -1,27 +1,26 @@
 #include "kart.h"
 
 vaisseau::vaisseau(){
-    pos=Vect(int(hauteur/2),int(largeur/2),0);
-    vit=Vect(2,2,1);
+    pos=Vect2(int(hauteur/2)-1,int(largeur/2));
+    vit=Vect2(2,2);
 }
 
-Vect vaisseau::getP(){
+Vect2 vaisseau::getP(){
     return pos;
 }
 
-Vect vaisseau::getV(){
+Vect2 vaisseau::getV(){
     return vit;
 }
 
-void vaisseau::insert(circuit c, int valeur){
+void vaisseau::affiche(Color C){
     for (int i=0;i<2;i++)
         for (int j=0;j<1;j++)
-            for (int k=0;k<0;k++)
-                c.setPixel(pixel(pos.getx()+i,pos.gety()+j,pos.getz()+k),valeur); //LA valeur 3 dans la grille glovale sera pour le vaisseau
+            fillRect((getP().getx()+i)*taille_case,(getP().gety()+j)*taille_case,taille_case,taille_case,C);
 }
 
 void vaisseau::bouge(circuit c){
-    insert(c,0);
+    affiche(WHITE);
     int key=clavier();
     //key_droite:16777236
     if(key==16777236){
@@ -39,5 +38,5 @@ void vaisseau::bouge(circuit c){
     if(key==16777237){
         pos=pos+bas;
     }
-    insert(c,3);
+    affiche(PURPLE);
 }

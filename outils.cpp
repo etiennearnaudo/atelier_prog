@@ -12,68 +12,54 @@ int Random(int a, int b)
 
 //-------Classe Vect---------//
 
-Vect::Vect(int a, int b, int c){
+Vect2::Vect2(int a, int b){
     x=a;
     y=b;
-    z=c;
 }
 
-Vect Vect::operator+(Vect a){
-    Vect v;
+Vect2 Vect2::operator+(Vect2 a){
+    Vect2 v;
     v.x=x+a.x;
     v.y=y+a.y;
-    v.z=z+a.z;
     return v;
 }
 
-Vect Vect::operator-(Vect a){
-    Vect v;
+Vect2 Vect2::operator-(Vect2 a){
+    Vect2 v;
     v.x=x-a.x;
     v.y=y-a.y;
-    v.z=z-a.z;
     return v;
 }
 
-Vect Vect::operator*(double a){
-    Vect v;
+Vect2 Vect2::operator*(double a){
+    Vect2 v;
     v.x=x*a;
     v.y=y*a;
-    v.z=z*a;
     return v;
 }
 
-Vect Vect::operator/(double a){
-    Vect v;
+Vect2 Vect2::operator/(double a){
+    Vect2 v;
     v.x=x/a;
     v.y=y/a;
-    v.z=z/a;
     return v;
 }
 
-int Vect::getx(){
+int Vect2::getx(){
     return x;
 }
 
-int Vect::gety(){
+int Vect2::gety(){
     return y;
 }
 
-int Vect::getz(){
-    return z;
-}
-
-void Vect::setx(int a){
+void Vect2::setx(int a){
     x=a;
 }
 
-void Vect::sety(int a){
+void Vect2::sety(int a){
     y=a;
 }
-
-void Vect::setz(int a){
-    z=a;
-}
-
 
 //----- Gestion du clavier -----
 

@@ -16,21 +16,22 @@ const int largeur = 32 ;
 const int hauteur = 32 ;
 const int profondeur = 25 ;
 
-class Vect{
+const int v_x = 2 ;
+const int v_y = 2 ;
+
+class Vect2{
     int x,y,z;
 public :
-    Vect() = default ;
-    Vect(int a, int b, int c);
-    Vect operator + (Vect a);
-    Vect operator - (Vect a);
-    Vect operator * (double a);
-    Vect operator / (double a);
+    Vect2() = default ;
+    Vect2(int a, int b);
+    Vect2 operator + (Vect2 a);
+    Vect2 operator - (Vect2 a);
+    Vect2 operator * (double a);
+    Vect2 operator / (double a);
     int getx();
     int gety();
-    int getz();
     void setx(int a);
     void sety(int a);
-    void setz(int a);
 };
 
 void InitRandom();
@@ -39,9 +40,9 @@ int Random(int a, int b);
 
 int clavier();
 
-const Vect droite = Vect(1,0,0);
-const Vect bas = Vect(0,1,0);
-const Vect gauche = Vect(-1,0,0);
-const Vect haut = Vect(0,-1,0);
+const Vect2 droite = Vect2(1,0)*v_x;
+const Vect2 bas = Vect2(0,1)*v_y;
+const Vect2 gauche = Vect2(-1,0)*v_x;
+const Vect2 haut = Vect2(0,-1)*v_y;
 
 #endif // OUTILS_H

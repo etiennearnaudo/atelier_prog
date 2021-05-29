@@ -5,6 +5,8 @@
 #include "kart.h"
 #include "outils.h"
 
+const int freq_obstacle =10 ; //obstacle tous les x avancements
+
 void generateSpace(circuit c1) ; //Crée un circuit contenant des obstacels générés aléatoirement
 
 void avance(circuit c1) ; //Permet d'avancer d'une case
