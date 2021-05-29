@@ -14,7 +14,11 @@ typedef Image<byte> Img;
 const int taille_case = 10 ;
 const int largeur = 32 ;
 const int hauteur = 32 ;
-const int profondeur = 25 ;
+const int profondeur = 36 ;
+const int distance_affichage = 9;
+const int freq_obstacle = 10 ; //obstacle tous les x avancements
+const int nbre_mvt_couche = 3 ;
+const int pause = 100 ;
 
 const int v_x = 2 ;
 const int v_y = 2 ;

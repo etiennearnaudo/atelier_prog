@@ -107,6 +107,8 @@ int circuit::getPixel(pixel p){
     return tunnel[p.indice(width,heigth)];
 }
 
+void circuit::reinit_couche(int z){};
+
 obstacle::obstacle(int w,int h,int z){
     int n=Random(0,2);
     pixel pix(0,0,z);

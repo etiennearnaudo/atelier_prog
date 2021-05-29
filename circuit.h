@@ -28,6 +28,7 @@ public:
     void affiche(int z,int size,int dec_x,int dec_y);
     void affiche(int z);
     int getPixel(pixel p);
+    void reinit_couche(int z);
 };
 
 class obstacle{
