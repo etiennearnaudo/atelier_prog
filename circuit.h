@@ -24,6 +24,7 @@ class circuit{
 public:
     circuit(int w, int h, int d);
     ~circuit();
+    void reinit_couche(int z);
     void setPixel(pixel p,int value);
     void affiche(int z,int size,int dec_x,int dec_y);
     void affiche(int z);

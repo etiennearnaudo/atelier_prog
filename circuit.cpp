@@ -94,13 +94,9 @@ void circuit::affiche(int z,int size,int dec_x,int dec_y){
 
 void circuit::affiche(int z){
     fillRect(0,0,width*taille_case,heigth*taille_case,WHITE);
-    affiche(z+5,taille_case-5,5*(width/2),5*((heigth/2)-3));
-    affiche(z+4,taille_case-4,4*(width/2),4*((heigth/2)-3));
-    affiche(z+3,taille_case-3,3*(width/2),3*((heigth/2)-3));
-    affiche(z+2,taille_case-2,2*(width/2),2*((heigth/2)-3));
-    affiche(z+2,taille_case-2,2*(width/2),2*((heigth/2)-3));
-    affiche(z+1,taille_case-1,1*(width/2),1*((heigth/2)-3));
-    affiche(z,taille_case,0,0);
+    for(int i=1;i<distance_affichage+1;i++){
+        affiche(z+(distance_affichage-i),taille_case-(distance_affichage-i),(distance_affichage-i)*(width/2),(distance_affichage-i)*((heigth/2)-3));
+    }
 }
 
 int circuit::getPixel(pixel p){
