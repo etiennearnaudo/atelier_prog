@@ -14,10 +14,16 @@ typedef Image<byte> Img;
 const int taille_case = 10 ;
 const int largeur = 32 ;
 const int hauteur = 32 ;
-const int profondeur = 25 ;
+const int profondeur = 36 ;
+const int distance_affichage = 9 ;
+
+const int freq_obstacle =10 ; //obstacle tous les x avancements
 
 const int v_x = 2 ;
 const int v_y = 2 ;
+const int repetition=1 ;
+
+const int attente = 200;
 
 class Vect2{
     int x,y,z;

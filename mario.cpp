@@ -21,21 +21,10 @@ int main()
 
     ob1.insert(circ);
     ob2.insert(circ);
-    circ.affiche(0);
-    v.bouge(circ);
-    milliSleep(200);
-    circ.affiche(1);
-    v.bouge(circ);
-    milliSleep(200);
-    circ.affiche(2);
-    v.bouge(circ);
-    milliSleep(200);
-    circ.affiche(3);
-    v.bouge(circ);
-    milliSleep(200);
-    circ.affiche(4);
-    v.bouge(circ);
-
+    for(int k=0;k<distance_affichage;k++){
+        v.bouge(circ,k);
+        milliSleep(attente);
+    }
     return 0;
 
 }

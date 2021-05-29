@@ -5,14 +5,12 @@
 #include "kart.h"
 #include "outils.h"
 
-const int freq_obstacle =10 ; //obstacle tous les x avancements
+void title(); //Affiche un écran titre, jusqu'aà avoir une ac(tion du joueur
 
-void generateSpace(circuit c1) ; //Crée un circuit contenant des obstacels générés aléatoirement
+void partie(); //Gère une partie,
 
-void avance(circuit c1) ; //Permet d'avancer d'une case
+void ecran_fin(bool &en_cours); //Modifie en_cours en false si on ne recommence une partie
 
-void animate(circuit c1, circuit c2, vaisseau v) ; //Gère le jeu
-
-void title();
+void jeu();
 
 #endif // AFFICHAGE_H

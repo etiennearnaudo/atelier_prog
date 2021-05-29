@@ -19,8 +19,9 @@ void vaisseau::affiche(Color C){
             fillRect((getP().getx()+i)*taille_case,(getP().gety()+j)*taille_case,taille_case,taille_case,C);
 }
 
-void vaisseau::bouge(circuit c){
+void vaisseau::bouge(circuit c, int z){
     affiche(WHITE);
+    c.affiche(z);
     int key=clavier();
     //key_droite:16777236
     if(key==16777236){
