@@ -71,7 +71,6 @@ circuit::circuit(int w, int h, int d){
             tunnel[p.indice(width,heigth)] = 1;
         }
     }
-    openWindow(width*taille_case,heigth*taille_case);
 }
 
 circuit::~circuit(){}
@@ -88,14 +87,13 @@ void circuit::affiche(int z,int size,int dec_x,int dec_y){
         p.sety(j);
         if(tunnel[p.indice(width,heigth)]==1) fillRect(p.getx()*size+dec_x,p.gety()*size+dec_y,size,size,BLACK);
         if(tunnel[p.indice(width,heigth)]==2) fillRect(p.getx()*size+dec_x,p.gety()*size+dec_y,size,size,BLUE);
-//        if(tunnel[p.indice(width,heigth)]==3) fillRect(p.getx()*size+dec_x,p.gety()*size+dec_y,size,size,PURPLE);
     }
 }
 
 void circuit::affiche(int z){
     fillRect(0,0,width*taille_case,heigth*taille_case,WHITE);
     for(int i=1;i<distance_affichage+1;i++){
-        affiche(z+(distance_affichage-i),taille_case-(distance_affichage-i),(distance_affichage-i)*(width/2),(distance_affichage-i)*((heigth/2)-3));
+        affiche((z+distance_affichage-i)%depth,taille_case-(distance_affichage-i),(distance_affichage-i)*(width/2),(distance_affichage-i)*((heigth/2)-3));
     }
 }
 
@@ -103,7 +101,32 @@ int circuit::getPixel(pixel p){
     return tunnel[p.indice(width,heigth)];
 }
 
-void circuit::reinit_couche(int z){};
+void circuit::reinit_couche(int z){
+    pixel p;
+    p.setz(z);
+    for (int i=0;i<width;i++){
+        p.setx(i);
+        for (int j=1;j<heigth-1;j++){
+            p.sety(j);
+            tunnel[p.indice(width,heigth)] = 0;
+        }
+        p.sety(0);
+        tunnel[p.indice(width,heigth)] = 1;
+        p.sety(heigth-1);
+        tunnel[p.indice(width,heigth)] = 1;
+    }
+    for (int i=1;i<heigth-1;i++){
+        p.sety(i);
+        for (int j=1;j<width-1;j++){
+            p.setx(j);
+            tunnel[p.indice(width,heigth)] = 0;
+        }
+        p.setx(0);
+        tunnel[p.indice(width,heigth)] = 1;
+        p.setx(width-1);
+        tunnel[p.indice(width,heigth)] = 1;
+    }
+}
 
 obstacle::obstacle(int w,int h,int z){
     int n=Random(0,2);

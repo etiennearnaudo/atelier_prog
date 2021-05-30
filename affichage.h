@@ -14,7 +14,7 @@ void partie();
 
 void ecran_fin(bool &encours);
 
-bool crash(circuit c,vaisseau v);
+bool crash(circuit &c,vaisseau &v);
 
 
 #endif // AFFICHAGE_H

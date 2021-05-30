@@ -11,7 +11,7 @@ public:
     Vect2 getP();
     Vect2 getV();
     void affiche(Color c);
-    void bouge(circuit c, int z);
+    void bouge(circuit &c, int z);
 
 };
 

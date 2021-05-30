@@ -20,6 +20,7 @@ int main()
 {
     InitRandom();
 
+    jeu();
 
     return 0;
 
