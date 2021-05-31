@@ -48,9 +48,8 @@ class circuit{
     ~circuit();
     void reinit_couche(int z);
     void setPixel(pixel p,int value);
-    void affiche(int z,int size,int dec_x,int dec_y);
     void affiche_fond(int decallage);
-    void affiche(int z);
+    void affiche(int decallage);
     int getPixel(pixel p);
 };
 

@@ -20,11 +20,11 @@ void vaisseau::affiche(Color C){
             fillRect((getP().getx()+i)*taille_case,(getP().gety()+j)*taille_case,taille_case,taille_case,C);
 }
 
-void vaisseau::bouge(circuit &c, int z){
+void vaisseau::bouge(circuit &c, int decallage){
     affiche(WHITE);
     c.affiche_fond(decallage);
+    c.affiche(decallage);
 
-    c.affiche(z);
     int key=clavier();
     //key_droite:16777236
     if(key==16777236 && (getP().getx()+taille.getx()-1 + v_x<largeur)){

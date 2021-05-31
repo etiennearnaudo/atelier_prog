@@ -83,21 +83,12 @@ void circuit::setPixel(pixel p,int value){
     tunnel[p.indice(width,heigth)] = value;
 }
 
-//void circuit::affiche(int z,int size,int dec_x,int dec_y){
-//    pixel p;
-//    p.setz(z);
-//    for (int i=0;i<width;i++) for (int j=0;j<heigth;j++) {
-//        p.setx(i);
-//        p.sety(j);
-//        if(tunnel[p.indice(width,heigth)]==2) fillRect(p.getx()*size+dec_x,p.gety()*size+dec_y,size,size,BLUE);
-//    }
-//}
-
-void circuit::affiche(int z){
+void circuit::affiche(int decallage){
+//    affiche_fond(decallage);
     for(int i=distance_affichage-1;i>=0;i--){
         obstacles[i].affiche(i, decallage);
-//        affiche((z+distance_affichage-i)%depth,taille_case-(distance_affichage-i),(distance_affichage-i)*(width/2),(distance_affichage-i)*((heigth/2)-3));
     }
+
 }
 
 void circuit::affiche_fond(int decallage){
@@ -111,9 +102,7 @@ void circuit::affiche_fond(int decallage){
         fillRect(dec_x,dec_y,size,(heigth)*size,BLACK); //gauche
         fillRect(dec_x,(heigth-1)*size+dec_y,(width)*size,size,BLACK); //bas
         fillRect((width-1)*size+dec_x,dec_y,size,(heigth)*size,BLACK); //droite
-
     }
-
 }
 
 int circuit::getPixel(pixel p){
@@ -121,7 +110,6 @@ int circuit::getPixel(pixel p){
 }
 
 void circuit::reinit_couche(int z){
-//    obstacles[z].set_type(0);
     pixel p;
     p.setz(z);
     for (int i=0;i<width;i++){
@@ -184,10 +172,6 @@ obstacle::obstacle(int w,int h,int z){
     principal = pixel(0,0,0);
 }
 
-//obstacle::obstacle(){
-//    obstacle(largeur,hauteur,profondeur);
-//}
-
 obstacle::~obstacle(){
     delete[] ob;
 }
@@ -203,7 +187,7 @@ void obstacle::insert(circuit &c){
 }
 
 void obstacle::affiche(int couche, int decallage){
-    int n=couche;
+    int n=(distance_affichage-couche);
     int w=largeur;
     int h=hauteur;
     int size = taille_case-(distance_affichage-n);
@@ -211,16 +195,16 @@ void obstacle::affiche(int couche, int decallage){
     int dec_y = (distance_affichage-n)*((h/2)-decallage);
 
     if (type==1){
-        fillRect(dec_x,dec_y,(int(w/2)-1)*size,(h-1)*size,BLUE);
+        fillRect(dec_x,dec_y,(int(w/2))*size,(h)*size,BLUE);
     }
 
     if (type==2){
-        fillRect(dec_x,dec_y,(w-1)*size,(int(h/2)-1)*size,BLUE);
+        fillRect(dec_x,dec_y,(w)*size,(int(h/2))*size,BLUE);
     }
 
     if(type==3){
         int largeur_bande = 3 ;
-        fillRect(dec_x,int(h/2)*size-dec_y,(w-1)*size,largeur_bande*size,BLUE);
+        fillRect(dec_x,(int(h/2))*taille_case,(w)*size,largeur_bande*size,BLUE);
     }
 }
 
