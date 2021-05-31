@@ -2,9 +2,12 @@
 
 bool crash(circuit &c, vaisseau &v,int couche){
     bool test = false ;
-    pixel p1(v.getP().getx(),v.getP().gety(),couche);
-    pixel p2(v.getP().getx()+1,v.getP().gety(),couche);
-    test= test + (c.getPixel(p1) == 2) + (c.getPixel(p2) == 2);
+    for(int i=0;i<v.get_taille().getx();i++){
+        for(int j=0;j<v.get_taille().gety();j++) {
+            pixel p(v.getP().getx()+i,v.getP().gety()+j,couche);
+            test= test + (c.getPixel(p) == 2);
+        }
+    }
     return(test);
 }
 
@@ -17,7 +20,14 @@ void partie(){
         c.reinit_couche((couche+distance_affichage)%profondeur);
         if (((couche+distance_affichage)%profondeur)%freq_obstacle==0){
             obstacle ob(largeur,hauteur,(couche+distance_affichage)%profondeur);
+            for(int k=0;k<distance_affichage-1;k++){
+                c.obstacles[k].set_type(c.obstacles[k+1].get_type());
+            }
+            c.obstacles[distance_affichage-1].set_type(ob.get_type());
             ob.insert(c);
+        }
+        else{
+            c.obstacles[distance_affichage-1].set_type(0);
         }
         for (int k=0;k<nbre_mvt_couche;k++) if (encours){
             v.bouge(c,couche);

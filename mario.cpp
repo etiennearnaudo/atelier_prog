@@ -22,25 +22,8 @@ int main()
 
     jeu();
 
+    endGraphics();
+
     return 0;
 
 }
-
-//    circuit circ(largeur,hauteur,profondeur);
-
-//    vaisseau v;
-//    circ.affiche(0);
-//    v.affiche(PURPLE);
-//    click();
-//    obstacle ob1(largeur,hauteur,0);
-//    obstacle ob2(largeur,hauteur,4);
-
-//    ob1.insert(circ);
-//    ob2.insert(circ);
-//    for(int k=0;k<distance_affichage;k++){
-//        v.bouge(circ,k);
-//        milliSleep(attente);
-//    }
-//    return 0;
-
-//}
