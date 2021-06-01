@@ -23,7 +23,7 @@ class circuit;
 class obstacle{
     int type;
     pixel* ob;
-    pixel principal;
+    pixel principal; //pixel en haut à gauche
     int taille;
 public:
     obstacle()=default;
@@ -41,14 +41,11 @@ class circuit{
     int width, heigth, depth;
 
     public:
-    obstacle obstacles[distance_affichage];
-
+    obstacle obstacles[distance_affichage]; //Liste des types d'obstacles à afficher dans la zone d'affichage
 
     circuit(int w, int h, int d);
-    ~circuit();
     void reinit_couche(int z);
     void setPixel(pixel p,int value);
-    void affiche_fond(int decallage);
     void affiche(int decallage);
     int getPixel(pixel p);
 };

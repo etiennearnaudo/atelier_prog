@@ -22,8 +22,6 @@ int main()
 
     jeu();
 
-    endGraphics();
-
     return 0;
 
 }

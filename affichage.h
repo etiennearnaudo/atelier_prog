@@ -14,6 +14,8 @@ void partie();
 
 void ecran_fin(bool &encours);
 
+void affiche_fond(int decallage);
+
 bool crash(circuit &c,vaisseau &v);
 
 

@@ -1,4 +1,5 @@
 #include "circuit.h"
+#include "affichage.h"
 
 pixel::pixel(){
     x=0;
@@ -77,32 +78,16 @@ circuit::circuit(int w, int h, int d){
     }
 }
 
-circuit::~circuit(){}
-
 void circuit::setPixel(pixel p,int value){
     tunnel[p.indice(width,heigth)] = value;
 }
 
 void circuit::affiche(int decallage){
-//    affiche_fond(decallage);
+    affiche_fond(decallage);
     for(int i=distance_affichage-1;i>=0;i--){
         obstacles[i].affiche(i, decallage);
     }
 
-}
-
-void circuit::affiche_fond(int decallage){
-    fillRect(0,0,width*taille_case,heigth*taille_case,WHITE);
-    for(int n=distance_affichage;n>0;n--){
-        int size = taille_case-(distance_affichage-n);
-        int dec_x = (distance_affichage-n)*(width/2);
-        int dec_y = (distance_affichage-n)*((heigth/2)-decallage);
-
-        fillRect(dec_x,dec_y,(width)*size,size,BLACK); //haut
-        fillRect(dec_x,dec_y,size,(heigth)*size,BLACK); //gauche
-        fillRect(dec_x,(heigth-1)*size+dec_y,(width)*size,size,BLACK); //bas
-        fillRect((width-1)*size+dec_x,dec_y,size,(heigth)*size,BLACK); //droite
-    }
 }
 
 int circuit::getPixel(pixel p){
