@@ -13,8 +13,6 @@ pixel::pixel(int x0, int y0,int z0){
     z=z0;
 }
 
-pixel::~pixel(){}
-
 int pixel::getx(){
     return x;
 }

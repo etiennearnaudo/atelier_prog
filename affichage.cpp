@@ -46,7 +46,7 @@ void partie(){
         for(int k=0;k<distance_affichage-1;k++){
             c.obstacles[k].set_type(c.obstacles[k+1].get_type());
         }
-        if (((couche+distance_affichage)%freq_obstacle)%profondeur==0){ //Si on doit afficher un obstacle
+        if (((couche+distance_affichage)%freq_obstacle)==0){ //Si on doit afficher un obstacle
             obstacle ob(largeur,hauteur,(couche+distance_affichage)%profondeur);
             c.obstacles[distance_affichage-1].set_type(ob.get_type());
             ob.insert(c);
@@ -55,7 +55,7 @@ void partie(){
             c.obstacles[distance_affichage-1].set_type(0);
         }
 
-        for (int k=0;k<nbre_mvt_couche;k++){
+        for (int j=0;j<nbre_mvt_couche;j++){
             if (encours){
                 v.bouge(c, Vect_decallage, decallage);
                 if (crash(c,v,couche)){
@@ -96,12 +96,13 @@ void ecran_fin(bool &new_game){
             new_game = not new_game;
         }
     }
+
 }
 
 void jeu(){
     openWindow(largeur*taille_case,hauteur*taille_case);
-    title();
     bool nvlle_partie=true;
+    title();
     while(nvlle_partie){
         partie();
         ecran_fin(nvlle_partie);

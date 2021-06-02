@@ -7,7 +7,6 @@ class pixel{
     int x,y,z;
 public:
     pixel();
-    ~pixel();
     pixel(int x0,int y0,int z0);
     int getx();
     int gety();

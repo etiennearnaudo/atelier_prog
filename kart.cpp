@@ -9,7 +9,6 @@ vaisseau::vaisseau(){
     int w_v=get_taille().getx()*taille_case, h_v=get_taille().gety()*taille_case;
     assert(loadAlphaColorImage(srcPath("Xwing_white.png"), rgba_vaisseau, w_v, h_v)); // Stop si l'image n'est pas chargee
     setMaskFromColor(rgba_vaisseau,w_v,h_v,WHITE);
-//    image.setColorImage(0, 0, rgba_vaisseau, w_v, h_v);
 }
 
 vaisseau::~vaisseau(){

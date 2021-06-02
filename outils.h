@@ -14,7 +14,7 @@ typedef Image<byte> Img;
 const int taille_case = 10 ; //taille d'une case
 const int largeur = 32 ; //largeur en nb de case
 const int hauteur = 32 ; //hauteur en nb de case
-const int profondeur = 39 ; //profondeur en nb de case du tunnel
+const int profondeur = 39 ; //profondeur en nb de case du tunnel ATTENTION il faut que ce soit multiple de freqobstacle
 const int distance_affichage = 10; //On n'affiche qu'une partie du tunnel
 const int decallage = -3 ; //on décalle l'affichage de tant vers le haut pour donner l'impression de perspective
 const int nb_star = 40 ; //Nobre d'étoiles dans le fond

@@ -14,8 +14,6 @@ void key(){
         //key_echape 16777216
     }
 
-
-
 int main()
 {
     InitRandom();
