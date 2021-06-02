@@ -21,7 +21,7 @@ const int nb_star = 40 ; //Nobre d'étoiles dans le fond
 
 //Gestion du gameplay
 const int freq_obstacle = 13 ; //obstacle tous les x avancements
-const int nbre_mvt_couche = 3 ; //On peut bouger tant de fois par tour
+const int nbre_mvt_couche = 5 ; //On peut bouger tant de fois par tour
 const int pause = 100 ; //on avance tous les tant
 
 //Gestion du vaisseau

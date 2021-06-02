@@ -6,8 +6,7 @@
 class vaisseau{
     Vect2 pos,vit;
     Vect2 taille; //dimensions du vaisseau
-    NativeBitmap image;
-    byte* rgb_vaisseau;
+    byte* rgba_vaisseau; //Image du vaisseau
 
 public:
     vaisseau();
@@ -16,8 +15,7 @@ public:
     Vect2 getV();
     Vect2 get_taille();
     void affiche(Color c);
-    void bouge(circuit &c, int z);
-//    void loadVaisseau();
+    void bouge(circuit &c, Vect2 &Vect_decallage, int decallage);
 
 };
 

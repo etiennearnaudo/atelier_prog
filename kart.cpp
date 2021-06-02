@@ -5,17 +5,17 @@
 vaisseau::vaisseau(){
     taille=Vect2(taille_vaisseau_x,taille_vaisseau_y);
     pos=Vect2(int(hauteur/2)-int(taille.getx()/2),int(largeur/2)-int(taille.gety()/2));
-    vit=Vect2(2,2);
-    int w_v=get_taille().getx(), h_v=get_taille().gety() ;
-    byte* rgb_vaisseau;
-    assert(loadColorImage(srcPath("Xwing.bmp"), rgb_vaisseau, w_v, h_v)); // Stop si l'image n'est pas chargee
-    image=NativeBitmap(w_v,h_v);
-    image.setColorImage(0, 0, rgb_vaisseau, w_v, h_v);
+    vit=Vect2(v_x,v_y);
+    int w_v=get_taille().getx()*taille_case, h_v=get_taille().gety()*taille_case;
+    assert(loadAlphaColorImage(srcPath("Xwing_white.png"), rgba_vaisseau, w_v, h_v)); // Stop si l'image n'est pas chargee
+    setMaskFromColor(rgba_vaisseau,w_v,h_v,WHITE);
+//    image.setColorImage(0, 0, rgba_vaisseau, w_v, h_v);
 }
 
 vaisseau::~vaisseau(){
-    delete[] rgb_vaisseau ;
+    delete[] rgba_vaisseau;
 }
+
 Vect2 vaisseau::getP(){
     return pos;
 }
@@ -29,30 +29,35 @@ void vaisseau::affiche(Color C){
 //    fillRect(getP().getx()*taille_case,getP().gety()*taille_case,get_taille().getx()*taille_case,get_taille().gety()*taille_case,C);
 
 /// Avec image bmp :
-    putNativeBitmap(taille_case*getP().getx(),taille_case*getP().gety(),image); //On affiche uniquement la tête
+    int  w_v=get_taille().getx()*taille_case, h_v=get_taille().gety()*taille_case;
+    putAlphaColorImage(taille_case*getP().getx(),taille_case*getP().gety(),rgba_vaisseau,w_v,h_v); //On affiche le vaisseau
 }
 
-void vaisseau::bouge(circuit &c, int decallage){
-//    affiche(WHITE);
-    c.affiche(decallage);
-
+void vaisseau::bouge(circuit &c, Vect2 &Vect_decallage, int decallage){
+//    Vect2 Vect_decallage(0,decallage);
     int key=clavier();
     //key_droite:16777236
     if(key==16777236 && (getP().getx()+taille.getx()-1 + v_x<largeur)){
+        Vect_decallage=Vect_decallage+Vect2(-1*decallage/3,0);
         pos=pos+droite;
     }
     //key_gauche:16777234
     if(key==16777234 && (getP().getx()-v_x>=0)){
+        Vect_decallage=Vect_decallage+Vect2(decallage/3,0);
         pos=pos+gauche;
     }
     //key_haut:16777235
     if(key==16777235 && (getP().gety()-v_y>=0)){
+        Vect_decallage=Vect_decallage+Vect2(0,decallage/3);
         pos=pos+haut;
     }
     //key_bas:16777237
     if(key==16777237 && (getP().gety()+taille.gety()+ v_x<hauteur)){
+        Vect_decallage=Vect_decallage+Vect2(0,-1*decallage/3);
         pos=pos+bas;
     }
+
+    c.affiche(Vect_decallage);
     affiche(PURPLE);
 }
 

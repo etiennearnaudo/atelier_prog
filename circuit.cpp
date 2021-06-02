@@ -4,6 +4,7 @@
 pixel::pixel(){
     x=0;
     y=0;
+    z=0;
 }
 
 pixel::pixel(int x0, int y0,int z0){
@@ -82,10 +83,10 @@ void circuit::setPixel(pixel p,int value){
     tunnel[p.indice(width,heigth)] = value;
 }
 
-void circuit::affiche(int decallage){
-    affiche_fond(decallage);
+void circuit::affiche(Vect2 Vect_decallage){
+    affiche_fond(Vect_decallage);
     for(int i=distance_affichage-1;i>=0;i--){
-        obstacles[i].affiche(i, decallage);
+        obstacles[i].affiche(i, Vect_decallage);
     }
 
 }
@@ -171,13 +172,13 @@ void obstacle::insert(circuit &c){
    }
 }
 
-void obstacle::affiche(int couche, int decallage){
+void obstacle::affiche(int couche, Vect2 Vect_decallage){
     int n=(distance_affichage-couche);
     int w=largeur;
     int h=hauteur;
     int size = taille_case-(distance_affichage-n);
-    int dec_x = (distance_affichage-n)*(w/2);
-    int dec_y = (distance_affichage-n)*((h/2)-decallage);
+    int dec_x = (distance_affichage-n)*((w/2)-Vect_decallage.getx());
+    int dec_y = (distance_affichage-n)*((h/2)-Vect_decallage.gety());
 
     if (type==1){
         fillRect(dec_x,dec_y,(int(w/2))*size,(h)*size,BLUE);
