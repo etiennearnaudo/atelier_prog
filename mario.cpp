@@ -8,14 +8,11 @@
 #include "affichage.h"
 
 
-
 int main()
 {
     InitRandom();
 
     jeu();
-
-    endGraphics();
 
     return 0;
 

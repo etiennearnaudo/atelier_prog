@@ -1,17 +1,11 @@
 #include "circuit.h"
-
-pixel::pixel(){
-    x=0;
-    y=0;
-}
+#include "affichage.h"
 
 pixel::pixel(int x0, int y0,int z0){
     x=x0;
     y=y0;
     z=z0;
 }
-
-pixel::~pixel(){}
 
 int pixel::getx(){
     return x;
@@ -77,32 +71,16 @@ circuit::circuit(int w, int h, int d){
     }
 }
 
-circuit::~circuit(){}
-
 void circuit::setPixel(pixel p,int value){
     tunnel[p.indice(width,heigth)] = value;
 }
 
-void circuit::affiche(int decallage){
-//    affiche_fond(decallage);
+void circuit::affiche(Vect2 Vect_decallage){
+    affiche_fond(Vect_decallage);
     for(int i=distance_affichage-1;i>=0;i--){
-        obstacles[i].affiche(i, decallage);
+        obstacles[i].affiche(i, Vect_decallage);
     }
 
-}
-
-void circuit::affiche_fond(int decallage){
-    fillRect(0,0,width*taille_case,heigth*taille_case,WHITE);
-    for(int n=distance_affichage;n>0;n--){
-        int size = taille_case-(distance_affichage-n);
-        int dec_x = (distance_affichage-n)*(width/2);
-        int dec_y = (distance_affichage-n)*((heigth/2)-decallage);
-
-        fillRect(dec_x,dec_y,(width)*size,size,BLACK); //haut
-        fillRect(dec_x,dec_y,size,(heigth)*size,BLACK); //gauche
-        fillRect(dec_x,(heigth-1)*size+dec_y,(width)*size,size,BLACK); //bas
-        fillRect((width-1)*size+dec_x,dec_y,size,(heigth)*size,BLACK); //droite
-    }
 }
 
 int circuit::getPixel(pixel p){
@@ -186,13 +164,13 @@ void obstacle::insert(circuit &c){
    }
 }
 
-void obstacle::affiche(int couche, int decallage){
+void obstacle::affiche(int couche, Vect2 Vect_decallage){
     int n=(distance_affichage-couche);
     int w=largeur;
     int h=hauteur;
     int size = taille_case-(distance_affichage-n);
-    int dec_x = (distance_affichage-n)*(w/2);
-    int dec_y = (distance_affichage-n)*((h/2)-decallage);
+    int dec_x = (distance_affichage-n)*((w/2)-Vect_decallage.getx());
+    int dec_y = (distance_affichage-n)*((h/2)-Vect_decallage.gety());
 
     if (type==1){
         fillRect(dec_x,dec_y,(int(w/2))*size,(h)*size,BLUE);
