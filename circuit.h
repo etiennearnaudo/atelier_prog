@@ -6,7 +6,7 @@
 class pixel{
     int x,y,z;
 public:
-    pixel()=default;
+    pixel(){}
     pixel(int x0,int y0,int z0);
     int getx();
     int gety();
@@ -21,13 +21,16 @@ class circuit;
 
 class obstacle{
     int type;
-    pixel* ob;
+    pixel ob[hauteur*largeur];
     pixel principal; //pixel en haut à gauche
     int taille;
+
+    obstacle(const obstacle&);
+    void operator=(const obstacle&);
 public:
-    obstacle()=default;
+    obstacle(){}
     obstacle(int w,int h,int z);
-    ~obstacle();
+//    ~obstacle();
     void insert(circuit &c);
     void affiche(int couche, Vect2 Vect_decallage);
     int gettaille();
@@ -44,9 +47,9 @@ class circuit{
 
     circuit(int w, int h, int d);
     void reinit_couche(int z);
-    void setPixel(pixel p,int value);
+    void setPixel(pixel &p,int value);
     void affiche(Vect2 Vect_decallage);
-    int getPixel(pixel p);
+    int getPixel(pixel &p);
 };
 
 #endif // CIRCUIT_H

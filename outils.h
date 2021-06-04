@@ -31,7 +31,7 @@ const int v_x = 2 ; //vitesse de déplacement horizontale
 const int v_y = 2 ; //vitesse de déplacement verticale
 
 class Vect2{
-    int x,y,z;
+    int x,y;
 public :
     Vect2() = default ;
     Vect2(int a, int b);

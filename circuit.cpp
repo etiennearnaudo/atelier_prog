@@ -40,7 +40,6 @@ circuit::circuit(int w, int h, int d){
     heigth = h;
     depth = d;
     for(int n=0;n<distance_affichage;n++){
-        obstacles[n]=obstacle(w,h,d);
         obstacles[n].set_type(0);
     }
     pixel p;
@@ -71,7 +70,7 @@ circuit::circuit(int w, int h, int d){
     }
 }
 
-void circuit::setPixel(pixel p,int value){
+void circuit::setPixel(pixel &p,int value){
     tunnel[p.indice(width,heigth)] = value;
 }
 
@@ -83,7 +82,7 @@ void circuit::affiche(Vect2 Vect_decallage){
 
 }
 
-int circuit::getPixel(pixel p){
+int circuit::getPixel(pixel &p){
     return tunnel[p.indice(width,heigth)];
 }
 
@@ -120,7 +119,7 @@ obstacle::obstacle(int w,int h,int z){
     if (n==1){
         type=1;
         taille = ((w/2)-1)*(h-2);
-        ob = new pixel[taille];
+//        ob = new pixel[taille];
         for (int i=0;i<w/2-1;i++) for (int j=0;j<h-2;j++) {
             pix.setx(i+1);
             pix.sety(j+1);
@@ -130,7 +129,7 @@ obstacle::obstacle(int w,int h,int z){
     if (n==2){
         type=2;
         taille = (w-2)*((h/2)-1);
-        ob = new pixel[taille];
+//        ob = new pixel[taille];
         for (int i=0;i<w-2;i++) for (int j=0;j<h/2-1;j++) {
             pix.setx(i+1);
             pix.sety(j+1);
@@ -140,7 +139,7 @@ obstacle::obstacle(int w,int h,int z){
     if(n==3){
         type=3;
         taille = 3*(w-2);
-        ob = new pixel[taille];
+//        ob = new pixel[taille];
         for (int i=0;i<w-2;i++) for (int j=0;j<3;j++){
             pix.setx(i+1);
             pix.sety((h/2)+j);
@@ -150,13 +149,12 @@ obstacle::obstacle(int w,int h,int z){
     principal = pixel(0,0,0);
 }
 
-obstacle::~obstacle(){
-    delete[] ob;
-}
+//obstacle::~obstacle(){
+//    delete[] ob;
+//}
 
 
 void obstacle::insert(circuit &c){
-    cout << taille <<endl;
     pixel pix;
     for (int i=0;i<taille;i++) {
         pix=ob[i];

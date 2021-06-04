@@ -8,6 +8,10 @@ class vaisseau{
     Vect2 taille; //Dimensions du vaisseau
     byte* rgba_vaisseau; //Image du vaisseau
 
+
+    vaisseau(const vaisseau&);
+    void operator=(const vaisseau&);
+
 public:
     vaisseau();
     ~vaisseau();

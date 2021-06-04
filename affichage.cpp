@@ -29,8 +29,8 @@ void affiche_fond(Vect2 Vect_decallage){
         int dec_y = (distance_affichage-n)*((heigth/2)-Vect_decallage.gety());
 
 //        fillRect(dec_x,dec_y,(width)*size,size,WHITE); //haut
-//        fillRect(dec_x,dec_y,size,(heigth)*size,WHITE); //gauche
-//        fillRect((width-1)*size+dec_x,dec_y,size,(heigth)*size,WHITE); //droite
+        fillRect(dec_x,dec_y,size,(heigth)*size,WHITE); //gauche
+        fillRect((width-1)*size+dec_x,dec_y,size,(heigth)*size,WHITE); //droite
         fillRect(dec_x,(heigth-1)*size+dec_y,(width)*size,size,WHITE); //bas
     }
 }
