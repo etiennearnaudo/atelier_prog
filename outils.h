@@ -16,7 +16,7 @@ const int largeur = 32 ; //largeur en nb de case
 const int hauteur = 32 ; //hauteur en nb de case
 const int profondeur = 40 ; //profondeur en nb de case du tunnel
 const int distance_affichage = 9; //On n'affiche qu'une partie du tunnel
-const int freq_obstacle = 10 ; //obstacle tous les x avancements
+const int freq_obstacle = 15 ; //obstacle tous les x avancements
 const int nbre_mvt_couche = 3 ; //On peut bouger tant de fois par tour
 const int decallage = 3 ; //on décalle l'affichage de tant vers le haut pour donner l'impression de perspective
 
