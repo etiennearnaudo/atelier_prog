@@ -4,8 +4,8 @@
 #include "circuit.h"
 
 class vaisseau{
-    Vect2 pos,vit;
-    Vect2 taille; //dimensions du vaisseau
+    Vect2 pos,vit; //Posiition du coin en haut à gauche
+    Vect2 taille; //Dimensions du vaisseau
     byte* rgba_vaisseau; //Image du vaisseau
 
 public:

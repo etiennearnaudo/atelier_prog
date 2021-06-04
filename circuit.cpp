@@ -1,12 +1,6 @@
 #include "circuit.h"
 #include "affichage.h"
 
-pixel::pixel(){
-    x=0;
-    y=0;
-    z=0;
-}
-
 pixel::pixel(int x0, int y0,int z0){
     x=x0;
     y=y0;
