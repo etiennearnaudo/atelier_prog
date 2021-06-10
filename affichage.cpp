@@ -36,9 +36,13 @@ void affiche_fond(Vect2 Vect_decallage){
 }
 
 void partie(){
+    cout << 1 << endl;
     Vect2 Vect_decallage(0,decallage);
+    cout << 2 << endl;
     circuit c(largeur,hauteur,profondeur);
+    cout << 3 << endl;
     vaisseau v;
+    cout << 4 << endl;
     int couche = 0;
     bool encours=true;
     do{

@@ -2,18 +2,49 @@
 #include "affichage.h"
 
 
+//vaisseau::vaisseau(){
+//    cout << 5 << endl;
+//    taille=Vect2(taille_vaisseau_x,taille_vaisseau_y);
+//    cout << 6 << endl;
+//    pos=Vect2(int(hauteur/2)-int(taille.getx()/2),int(largeur/2)-int(taille.gety()/2));
+//    cout << 7 << endl;
+//    vit=Vect2(v_x,v_y);
+//    int w_v=get_taille().getx()*taille_case, h_v=get_taille().gety()*taille_case;
+//    cout << 8 << endl;
+//    assert(loadAlphaColorImage(srcPath("Xwing_white.png"), rgba_vaisseau, w_v, h_v)); // Stop si l'image n'est pas chargee
+//    cout << 9 << endl;
+//    setMaskFromColor(rgba_vaisseau,w_v,h_v,WHITE);
+//    cout << 10 << endl;
+//}
+
+//vaisseau::~vaisseau(){
+//    delete[] rgba_vaisseau;
+//}
+
+
 vaisseau::vaisseau(){
     taille=Vect2(taille_vaisseau_x,taille_vaisseau_y);
     pos=Vect2(int(hauteur/2)-int(taille.getx()/2),int(largeur/2)-int(taille.gety()/2));
     vit=Vect2(v_x,v_y);
     int w_v=get_taille().getx()*taille_case, h_v=get_taille().gety()*taille_case;
-    assert(loadAlphaColorImage(srcPath("Xwing_white.png"), rgba_vaisseau, w_v, h_v)); // Stop si l'image n'est pas chargee
-    setMaskFromColor(rgba_vaisseau,w_v,h_v,WHITE);
+    assert(loadColorImage(srcPath("Xwing_white.png"), r,g,b,a, w_v, h_v)); // Stop si l'image n'est pas chargee
+    cout << 9 << endl;
+    setMaskFromColor(r,g,b,a,w_v,h_v,WHITE);
+    cout << 10 << endl;
 }
 
 vaisseau::~vaisseau(){
-    delete[] rgba_vaisseau;
+    delete[] r;
+    delete[] g;
+    delete[] b;
+    delete[] a;
 }
+
+
+
+
+
+
 
 Vect2 vaisseau::getP(){
     return pos;
@@ -23,14 +54,28 @@ Vect2 vaisseau::getV(){
     return vit;
 }
 
+//void vaisseau::affiche(Color C){
+///// Version carrés :
+////    fillRect(getP().getx()*taille_case,getP().gety()*taille_case,get_taille().getx()*taille_case,get_taille().gety()*taille_case,C);
+
+///// Avec image bmp :
+//    int  w_v=get_taille().getx()*taille_case, h_v=get_taille().gety()*taille_case;
+//    putAlphaColorImage(taille_case*getP().getx(),taille_case*getP().gety(),rgba_vaisseau,w_v,h_v); //On affiche le vaisseau
+//}
+
+
 void vaisseau::affiche(Color C){
 /// Version carrés :
 //    fillRect(getP().getx()*taille_case,getP().gety()*taille_case,get_taille().getx()*taille_case,get_taille().gety()*taille_case,C);
 
 /// Avec image bmp :
     int  w_v=get_taille().getx()*taille_case, h_v=get_taille().gety()*taille_case;
-    putAlphaColorImage(taille_case*getP().getx(),taille_case*getP().gety(),rgba_vaisseau,w_v,h_v); //On affiche le vaisseau
+    putColorImage(taille_case*getP().getx(),taille_case*getP().gety(),r,g,b,a,w_v,h_v);
 }
+
+
+
+
 
 void vaisseau::bouge(circuit &c, Vect2 &Vect_decallage, int decallage){
 //    Vect2 Vect_decallage(0,decallage);
