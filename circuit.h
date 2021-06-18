@@ -1,38 +1,29 @@
-#ifndef CIRCUIT_H
-#define CIRCUIT_H
+#pragma once
 
 #include "outils.h"
-
-class pixel{
-    int x,y,z;
-public:
-    pixel(){}
-    pixel(int x0,int y0,int z0);
-    int getx();
-    int gety();
-    int getz();
-    void setx(int a);
-    void sety(int a);
-    void setz(int a);
-    int indice(int W,int H);
-};
 
 class circuit;
 
 class obstacle{
-    int type;
-    pixel ob[hauteur*largeur];
-    pixel principal; //pixel en haut à gauche
+    FVector<int,3> principal; //pixel en haut à gauche
     int taille;
+//    byte* rgba_tie; //Image du méchant
+
 
     obstacle(const obstacle&);
     void operator=(const obstacle&);
+
 public:
+    int type;
+    FVector<int,3> ob[hauteur*largeur];
+
     obstacle(){}
     obstacle(int w,int h,int z);
 //    ~obstacle();
+    FVector<int,3> getPrincipal();
+    void setPrincipal(FVector<int,3> p);
     void insert(circuit &c);
-    void affiche(int couche, Vect2 Vect_decallage);
+    void affiche(int couche, FVector<int,2> Vect_decallage);
     int gettaille();
     int get_type();
     void set_type(int Type);
@@ -47,9 +38,8 @@ class circuit{
 
     circuit(int w, int h, int d);
     void reinit_couche(int z);
-    void setPixel(pixel &p,int value);
-    void affiche(Vect2 Vect_decallage);
-    int getPixel(pixel &p);
+    void setPixel(FVector<int,3> &p,int value);
+    void affiche(FVector<int,2> Vect_decallage);
+    int getPixel(FVector<int,3> &p);
+    void insert(obstacle &ob, int couche);
 };
-
-#endif // CIRCUIT_H

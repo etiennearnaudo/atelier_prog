@@ -1,11 +1,10 @@
-#ifndef KART_H
-#define KART_H
+#pragma once
 
 #include "circuit.h"
 
 class vaisseau{
-    Vect2 pos,vit; //Posiition du coin en haut à gauche
-    Vect2 taille; //Dimensions du vaisseau
+    FVector<int,2> pos,vit; //Posiition du coin en haut à gauche
+    FVector<int,2> taille; //Dimensions du vaisseau
     byte* rgba_vaisseau; //Image du vaisseau
 
 
@@ -14,13 +13,11 @@ class vaisseau{
 
 public:
     vaisseau();
-    ~vaisseau();
-    Vect2 getP();
-    Vect2 getV();
-    Vect2 get_taille();
-    void affiche(Color c);
-    void bouge(circuit &c, Vect2 &Vect_decallage, int decallage);
+//    ~vaisseau();
+    FVector<int,2> getP();
+    FVector<int,2> getV();
+    FVector<int,2> get_taille();
+    void affiche();
+    void bouge(circuit &c, FVector<int,2> &Vect_decallage, int decallage);
 
 };
-
-#endif // KART_H
